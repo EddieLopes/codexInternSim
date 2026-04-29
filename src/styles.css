@@ -2,11 +2,81 @@
 @tailwind components;
 @tailwind utilities;
 
-body { font-family: Inter, ui-sans-serif, system-ui; }
-.panel { @apply bg-panel border border-border rounded-xl p-4 shadow-[0_0_30px_rgba(56,189,248,0.05)]; }
-.card { @apply rounded-lg border border-border bg-[#0f1522] p-3; }
-.btn { @apply rounded-lg bg-neon px-4 py-2 font-medium hover:brightness-110; }
-.input { @apply w-full rounded-lg border border-border bg-[#0f1522] px-3 py-2; }
-.muted { @apply text-slate-400; }
-.tab { @apply rounded-md border border-border px-3 py-1; }
-.tab.active { @apply bg-[#1b2340] text-cyan; }
+@layer base {
+  :root {
+    color-scheme: dark;
+    font-family: Inter, Geist, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #0b0e14;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply bg-bg;
+  }
+
+  body {
+    @apply min-h-screen bg-bg text-slate-100 antialiased;
+    font-family: Inter, Geist, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(rgba(148, 163, 184, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 163, 184, 0.035) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.82), transparent 78%);
+  }
+}
+
+@layer components {
+  .panel {
+    @apply rounded-[1.5rem] border border-gray-800/90 bg-panel/70 p-5 shadow-[0_24px_80px_rgba(0,0,0,0.32)] backdrop-blur-xl transition-all duration-200 ease-in-out md:p-6;
+  }
+
+  .card {
+    @apply rounded-2xl border border-gray-800/90 bg-[#111827]/70 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] backdrop-blur-md transition-all duration-200 ease-in-out;
+  }
+
+  .interactive-card {
+    @apply hover:-translate-y-0.5 hover:border-cyan/60 hover:bg-[#151f33]/80 hover:shadow-[0_0_34px_rgba(56,189,248,0.10)] focus:outline-none focus:ring-2 focus:ring-cyan/40;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-neon via-[#7c3aed] to-[#38bdf8] px-4 py-2 font-semibold text-white shadow-[0_0_26px_rgba(124,58,237,0.35)] transition-all duration-200 ease-in-out hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_0_38px_rgba(56,189,248,0.28)] focus:outline-none focus:ring-2 focus:ring-cyan/50 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:scale-100;
+  }
+
+  .input {
+    @apply w-full rounded-2xl border border-gray-800/90 bg-[#0f1522]/80 px-4 py-3 text-slate-100 outline-none transition-all duration-200 ease-in-out placeholder:text-slate-500 focus:border-cyan/60 focus:ring-2 focus:ring-cyan/20;
+  }
+
+  .muted {
+    @apply text-slate-400;
+  }
+
+  .tab {
+    @apply rounded-xl border border-gray-800/90 px-3 py-1 transition-all duration-200 ease-in-out hover:border-cyan/50 hover:text-white;
+  }
+
+  .tab.active {
+    @apply bg-[#1b2340]/90 text-cyan shadow-[0_0_22px_rgba(56,189,248,0.12)];
+  }
+
+  .progress-track {
+    @apply h-2 overflow-hidden rounded-full bg-slate-800/90;
+  }
+
+  .progress-fill {
+    @apply h-full rounded-full bg-gradient-to-r from-cyan via-neon to-[#fb7185] shadow-[0_0_18px_rgba(124,58,237,0.42)] transition-all duration-500 ease-out;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.22em] text-cyan;
+  }
+}
